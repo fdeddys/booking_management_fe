@@ -1,0 +1,99 @@
+<div class="container mt-4">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 'list'" (click)="switchTab('list')">Daftar Ruangan</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 'detail'" (click)="switchTab('detail')">Detail Ruangan</a>
+      </li>
+    </ul>
+  
+    <!-- Tab content -->
+    <div class="tab-content mt-3">
+  
+      <!-- List Tab -->
+      <div *ngIf="activeTab === 'list'">
+        <div>
+          <div class="d-flex mb-2">
+            <input type="text" class="form-control w-50 me-2" placeholder="Cari nama ruangan..." [(ngModel)]="searchTerm.name" />
+            <button class="btn btn-sm btn-outline-info ms-2 rounded-pill" style="width: 8em;" (click)="loadAll()">
+              <app-icon name="magnifying-glass" class="text-success" />
+              search
+            </button>
+          </div>
+          
+        </div>
+        
+  
+        <table class="table table-bordered table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Nama</th>
+              <th>Status</th>
+              <th>Keterangan</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let room of rooms">
+              <td>{{ room.id }}</td>
+              <td>{{ room.name }}</td>
+              <td>{{ room.status }}</td>
+              <td>{{ room.description }}</td>
+              <td>
+                <button class="btn btn-sm btn-outline-warning" (click)="editRoom(room)">
+                  <app-icon name="edit" class="text-warning" />Detail
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <nav>
+            <ul class="pagination">
+              <li class="page-item" [class.disabled]="firstPage">
+                <button class="page-link" (click)="openPage(-1)">Previous</button>
+              </li>
+              <li class="page-item" [class.disabled]="lastpage">
+                <button class="page-link" (click)="openPage(1)">Next</button>
+              </li>
+            </ul>
+          </nav>
+          
+      </div>
+  
+      <!-- Detail Tab -->
+      <div *ngIf="activeTab === 'detail'">
+        <div class="d-flex justify-content-between mb-3">
+          <button class="btn btn-success" (click)="newRoom()">Baru</button>
+          <button class="btn btn-primary" [disabled]="!selectedRoom.id" (click)="updateRoom()">Simpan</button>
+          <button class="btn btn-secondary" (click)="switchTab('list')">Tutup</button>
+        </div>
+  
+        <form (ngSubmit)="updateRoom()" #roomForm="ngForm">
+          <div class="mb-3">
+            <label class="form-label">Nama Ruangan</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedRoom.name" name="name" required maxlength="50">
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label">Keterangan</label>
+            <textarea class="form-control" [(ngModel)]="selectedRoom.description" name="description" maxlength="200"></textarea>
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select class="form-select" [(ngModel)]="selectedRoom.status" name="status" required>
+              <option value="ready">Ready</option>
+              <option value="occupied">Occupied</option>
+              <option value="in-service">In-Service</option>
+            </select>
+          </div>
+        </form>
+      </div>
+  
+    </div>
+  </div>
+  

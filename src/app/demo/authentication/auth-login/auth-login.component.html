@@ -1,0 +1,80 @@
+<div class="auth-main">
+  <div class="auth-wrapper v3">
+    <div class="auth-form">
+      <div class="auth-header">
+        <a href="javascript:"><img src="assets/images/logo-dark.svg" alt="theme logo" /></a>
+      </div>
+      <div class="my-5">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+              <h3 class="mb-0"><b>Login</b></h3>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="form-group mb-3">
+                <label class="form-label" for="email">Username</label>
+                <input
+                  type="email"
+                  id="email"
+                  [(ngModel)]="selectedRole.email"
+                  formControlName="email"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && formValues['email'].errors }"
+                />
+                @if (submitted && formValues['email'].errors) {
+                  <div class="invalid-feedback">
+                    @if (formValues['email'].hasError('required')) {
+                      <div>Username is Required</div>
+                    }
+                  </div>
+                }
+              </div>
+              <div class="form-group mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input
+                  type="{{ showPassword ? 'text' : 'password' }}"
+                  id="password"
+                  [(ngModel)]="selectedRole.password"
+                  id="password"
+                  formControlName="password"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && formValues['password'].errors }"
+                />
+                @if (selectedRole.password) {
+                  <i
+                    antIcon
+                    theme="outline"
+                    type="{{ showPassword ? 'eye' : 'eye-invisible' }}"
+                    id="togglePassword"
+                    (click)="togglePasswordVisibility()"
+                  ></i>
+                }
+
+                @if (submitted && formValues['password'].errors) {
+                  <div class="invalid-feedback">
+                    @if (formValues['password'].hasError('required')) {
+                      <div>Password is Required</div>
+                    }
+                  </div>
+                }
+              </div>
+              <div class="d-grid mt-4">
+                <button class="btn btn-primary">Login</button>
+              </div>
+              @if (error) {
+                <div class="alert alert-danger mt-3 mb-0">{{ error }}</div>
+              }
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="auth-footer row">
+        <div class="col my-1">
+          <p class="m-0">
+            Copyright  © IT Soft
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

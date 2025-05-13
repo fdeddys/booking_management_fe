@@ -1,0 +1,13 @@
+img {
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  .icon-hover-blue {
+    color: gray;
+    transition: color 0.3s;
+    &:hover {
+      color: dodgerblue;
+    }
+  }
+  
