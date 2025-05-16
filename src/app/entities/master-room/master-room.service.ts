@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { SERVER_PATH } from 'src/app/share/base-constant';
 import { Room, RoomPageDto } from './master-room.model';
 import { Observable } from 'rxjs';
@@ -12,9 +12,34 @@ export type EntityResponseType = HttpResponse<Room>;
 export class MasterRoomService {
 
   private serverUrl = SERVER_PATH + '/room';
+  private selectedRoomIdSignal = signal<number | null>(null)
 
   constructor(private http: HttpClient) { }
 
+  setSelectedRoomId(id: number) {
+    this.selectedRoomIdSignal.set(id);
+  }
+
+  get selectedRoomId(): WritableSignal<number | null> {
+    return this.selectedRoomIdSignal;
+  }
+
+  getRoomById(roomId : number): Observable<Room> {
+
+    let newresourceUrl = this.serverUrl + `/${roomId}`;
+    return this.http.get<Room>(newresourceUrl) 
+  }
+
+  updateRoom(room: Room): Observable<any> {
+    let newresourceUrl = this.serverUrl;
+    return this.http.put<any>(newresourceUrl, room);
+  }
+
+  createRoom(room: Room): Observable<any> {
+    let newresourceUrl = this.serverUrl;
+    return this.http.post<any>(newresourceUrl, room);
+  }
+  
   filter(req?: any): Observable<HttpResponse<RoomPageDto>> {
     let pageNumber = null;
     let pageCount = null;

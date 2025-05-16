@@ -5,6 +5,7 @@ import { MasterRoomService } from './master-room.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IconComponent } from 'src/app/share/icon.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,8 +16,7 @@ import { IconComponent } from 'src/app/share/icon.component';
 })
 export class MasterRoomComponent implements OnInit {
   
-  activeTab: 'list' | 'detail' = 'list';
-  selectedRoom: Room = this.getEmptyRoom();
+
   page = 1;
   pageSize = 5;
   totalPages = 1;
@@ -32,17 +32,16 @@ export class MasterRoomComponent implements OnInit {
   
   rooms: Room[] = [];
 
-  constructor(private roomService : MasterRoomService) {
+  constructor(
+    private roomService : MasterRoomService,
+    private router: Router,
+  ) {
 
   }
 
   ngOnInit() {
     console.log("room load all..")
     this.loadAll();
-  }
-
-  switchTab(tab: 'list' | 'detail') {
-    this.activeTab = tab;
   }
 
   loadAll() {
@@ -83,39 +82,14 @@ export class MasterRoomComponent implements OnInit {
   }
 
 
-
-  newRoom() {
-    this.selectedRoom = this.getEmptyRoom();
+  loadDetailPage(roomId: number) {
+    this.roomService.setSelectedRoomId(roomId)
+    this.router.navigate(['/room-detail'])
   }
 
-  editRoom(room: Room) {
-    this.selectedRoom = { ...room };
-    this.switchTab('detail');
+  addnew() {
+    this.roomService.setSelectedRoomId(0)
+    this.router.navigate(['/room-detail'])
   }
 
-  updateRoom() {
-    if (!this.selectedRoom.name) return;
-
-    if (this.selectedRoom.id) {
-      const index = this.rooms.findIndex(r => r.id === this.selectedRoom.id);
-      this.rooms[index] = { ...this.selectedRoom };
-      Swal.fire('Berhasil', 'Data ruangan diperbarui', 'success');
-    } else {
-      const newId = Math.max(...this.rooms.map(r => r.id), 0) + 1;
-      this.selectedRoom.id = newId;
-      this.rooms.push({ ...this.selectedRoom });
-      Swal.fire('Berhasil', 'Data ruangan ditambahkan', 'success');
-    }
-
-    this.switchTab('list');
-  }
-
-  getEmptyRoom(): Room {
-    return {
-      id: 0,
-      name: '',
-      description: '',
-      status: 'READY'
-    };
-  }
 }

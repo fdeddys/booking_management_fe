@@ -54,6 +54,11 @@ const routes: Routes = [
         data: { roles: [Role.Admin, Role.User] }
       },
       {
+        path: 'room-detail',
+        loadComponent: () => import('./entities/master-room/master-room-edit/master-room-edit.component').then((c)=>c.MasterRoomEditComponent),
+        data: { roles: [Role.Admin, Role.User] }
+      },
+      {
         path: 'sewa',
         loadComponent: () => import('./entities/sewa/sewa.component').then((c)=>c.SewaComponent),
         data: { roles: [Role.Admin, Role.User] }
