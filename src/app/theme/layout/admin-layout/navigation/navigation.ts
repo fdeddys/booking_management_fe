@@ -63,6 +63,17 @@ export const NavigationItems: NavigationItem[] = [
         // target: true,
         breadcrumbs: false,
         role: [Role.Admin, Role.User]
+      },
+      {
+        id: 'component',
+        title: 'User',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/users',
+        icon: 'gold',
+        // target: true,
+        breadcrumbs: false,
+        role: [Role.Admin, Role.User]
       }
     ]
   },
@@ -76,11 +87,11 @@ export const NavigationItems: NavigationItem[] = [
     children: [
       {
         id: 'component',
-        title: 'Sewa',
+        title: 'Booking',
         type: 'item',
         classes: 'nav-item',
         url: '/sewa',
-        icon: 'dollar',
+        icon: 'gold',
         // target: true,
         breadcrumbs: false,
         role: [Role.Admin, Role.User]
@@ -97,21 +108,10 @@ export const NavigationItems: NavigationItem[] = [
     children: [
       {
         id: 'component',
-        title: 'Laporan perhari',
+        title: 'Daily',
         type: 'item',
         classes: 'nav-item',
-        url: '/sewa',
-        icon: 'gold',
-        // target: true,
-        breadcrumbs: false,
-        role: [Role.Admin, Role.User]
-      },
-      {
-        id: 'component',
-        title: 'Laporan per room',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/sewa',
+        url: '/report-daily',
         icon: 'gold',
         // target: true,
         breadcrumbs: false,

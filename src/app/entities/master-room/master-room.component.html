@@ -1,68 +1,9 @@
-<!-- <div class="container mt-4">
-  
-    <div class="tab-content mt-3">
-  
-        <div>
-          <div class="d-flex mb-2">
-            <input type="text" class="form-control w-50 me-2" placeholder="Cari nama ruangan..." [(ngModel)]="searchTerm.name" />
-            <button class="btn btn-sm btn-outline-info ms-2 rounded-pill" style="width: 8em;" (click)="loadAll()">
-              <app-icon name="magnifying-glass" class="text-success" />
-              search
-            </button>
-          </div>
-          
-        </div>
-        
-  
-        <table class="table table-bordered table-hover">
-          <thead class="table-light">
-            <tr>
-              <th>ID</th>
-              <th>Nama</th>
-              <th>Status</th>
-              <th>Keterangan</th>
-              <th>Action 
-                <button class="btn btn-sm btn-outline-danger" (click)="addnew()">add</button>
-            </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let room of rooms">
-              <td>{{ room.id }}</td>
-              <td>{{ room.name }}</td>
-              <td>{{ room.status }}</td>
-              <td>{{ room.description }}</td>
-              <td>
-                <button class="btn btn-sm btn-outline-warning" (click)="loadDetailPage(room.id)">
-                  <app-icon name="edit" class="text-warning" />Detail
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <nav>
-            <ul class="pagination">
-              <li class="page-item" [class.disabled]="firstPage">
-                <button class="page-link me-2 rounded-pill"  (click)="openPage(-1)">Previous</button>
-              </li>
-              <li class="page-item" [class.disabled]="lastpage">
-                <button class="page-link ms-2 rounded-pill" (click)="openPage(1)">Next</button>
-              </li>
-            </ul>
-        </nav>
-          
-
-    </div>
-  </div>
-   -->
-
 
    <div class="card shadow-sm p-4 mt-4">
     <!-- Header dan Tombol -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <h5 class="card-title mb-0">Daftar Ruangan</h5>
-      <button class="btn btn-primary btn-sm rounded-pill px-3" (click)="addnew()">
+      <h5 class="card-title mb-0">List of Room</h5>
+      <button class="btn btn-outline-primary btn-sm rounded-pill px-3 hover-text-white" (click)="addnew()">
         <i class="bi bi-plus-circle"></i> Tambah
       </button>
     </div>
@@ -70,16 +11,19 @@
     <!-- Search -->
     <div class="d-flex flex-wrap align-items-center mb-3 gap-2">
       <input type="text" class="form-control form-control-sm w-auto flex-grow-1" placeholder="Cari nama ruangan..." [(ngModel)]="searchTerm.name" />
-      <div class="col-md-3">
+      <!-- <div class="col-md-3">
         <select class="form-select form-select-sm" [(ngModel)]="searchTerm.status">
           <option value="READY">Ready</option>
           <option value="BOOKED">Booked</option>
           <option value="NOT_READY">Not Ready</option>
         </select>
+      </div> -->
+      <div class="col-md-3 ">
+        <button class="btn btn-outline-info btn-sm rounded-pill px-3" (click)="loadAll()">
+          <i class="bi bi-search"></i> Cari
+        </button>
       </div>
-      <button class="btn btn-outline-info btn-sm rounded-pill px-3" (click)="loadAll()">
-        <i class="bi bi-search"></i> Cari
-      </button>
+      
     </div>
   
     <!-- Tabel -->
@@ -88,10 +32,10 @@
         <thead class="table-light">
           <tr>
             <th>ID</th>
-            <th>Nama</th>
-            <th>Status</th>
-            <th>Keterangan</th>
-            <th class="text-center">Aksi</th>
+            <th>Username</th>
+            <th>status</th>
+            <th>description</th>
+            <th class="text-center"></th>
           </tr>
         </thead>
         <tbody>

@@ -1,3 +1,5 @@
+///// <reference types="@angular/localize" />
+
 // angular import
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';

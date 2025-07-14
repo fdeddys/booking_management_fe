@@ -72,6 +72,7 @@ Chart.register(
     IconModule,
     NgChartsModule,
     IconComponent,
+    NgbDatepickerModule
   ],
   exports: [
     CommonModule,

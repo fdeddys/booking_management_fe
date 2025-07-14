@@ -1,1 +1,118 @@
-<p>sewa works!</p>
+
+<div class="card shadow-sm p-4 mt-4" >
+    <!-- Header dan Tombol -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="card-title mb-0">List of Booking Room</h5>
+      <button class="btn btn-outline-primary btn-sm rounded-pill px-3" (click)="addnew()">
+        <i class="bi bi-plus-circle"></i> Tambah
+      </button>
+    </div>
+  
+    <!-- Search -->
+
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+
+        <!-- Tanggal Awal -->
+        <div class="input-group w-auto">
+          <input
+            class="form-control form-control-sm"
+            placeholder="Tanggal Awal"
+            name="startDate"
+            ngbDatepicker
+            [(ngModel)]="tglAwal"
+            #dpAwal="ngbDatepicker"
+          />
+          <button class="btn btn-outline-secondary btn-sm" (click)="dpAwal.toggle()" type="button">📅</button>
+        </div>
+      
+        <!-- Tanggal Akhir -->
+        <div class="input-group w-auto">
+          <input
+            class="form-control form-control-sm"
+            placeholder="Tanggal Akhir"
+            name="endDate"
+            ngbDatepicker
+            [(ngModel)]="tglAkhir"
+            #dpAkhir="ngbDatepicker"
+          />
+          <button class="btn btn-outline-secondary btn-sm" (click)="dpAkhir.toggle()" type="button">📅</button>
+        </div>
+      
+        <!-- Tombol Cari -->
+        <button class="btn btn-outline-warning btn-sm rounded-pill px-3" (click)="loadAll()">
+          <i class="bi bi-search"></i> Cari
+        </button>
+      
+      </div>
+
+      
+    <!-- <div class="d-flex flex-wrap align-items-center mb-3 gap-2">
+      <input
+        class="form-control"
+        placeholder="dd-mm-yyyy"
+        name="dp"
+        ngbDatepicker
+        [(ngModel)]="tglAwal"
+        (dateSelect)="onDateSelect()"
+        #d="ngbDatepicker"
+        />
+ 
+      <div class="col-md-3">
+        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+            📅
+          </button>
+      </div>
+      <button class="btn btn-outline-info btn-sm rounded-pill px-3" (click)="loadAll()">
+        <i class="bi bi-search"></i> Cari
+      </button>
+    </div> -->
+  
+    <!-- Tabel -->
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Room</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Event name</th>
+            <th class="text-center">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sewa of sewas">
+            <td>{{ sewa.id }}</td>
+            <td>{{ sewa.customerName }}</td>
+            <td>{{ sewa.room.name }}</td>
+            <td>{{ sewa.startTime | date : 'dd - MMM - yyyy' }}</td>
+            <td>{{ viewTime(sewa.startTime, sewa.endTime) }}</td>
+            <td>{{ sewa.eventName }}</td>
+            <td class="text-center">
+              <button class="btn btn-outline-warning btn-sm rounded-pill px-3" (click)="loadDetailPage(sewa.id)">
+                <i class="bi bi-pencil-square"></i> Detail
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Pagination -->
+    <nav class="mt-3">
+      <ul class="pagination justify-content-end mb-0">
+        <li class="page-item" [class.disabled]="firstPage">
+          <button class="page-link rounded-pill" (click)="openPage(-1)">
+            <i class="bi bi-chevron-left"></i> Sebelumnya
+          </button>
+        </li>
+        <li class="page-item" [class.disabled]="lastpage">
+          <button class="page-link rounded-pill" (click)="openPage(1)">
+            Selanjutnya <i class="bi bi-chevron-right"></i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  

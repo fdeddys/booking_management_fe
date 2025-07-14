@@ -1,63 +1,16 @@
-<!-- 
-  <div class="card shadow-sm p-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <h5 class="card-title mb-0">Form Detail Ruangan</h5>
-      <div class="btn-group btn-group-sm" role="group" aria-label="Room Actions">
-        <button type="button" class="btn btn-primary rounded-pill px-3" (click)="newRoom()">
-          <i class="bi bi-plus-circle"></i> Add New
-        </button>
-        <button type="submit" class="btn btn-success rounded-pill px-3" (click)="updateRoom()">
-          <i class="bi bi-save"></i> Update
-        </button>
-        <button type="button" class="btn btn-secondary rounded-pill px-3" (click)="backToList()">
-          <i class="bi bi-arrow-left-circle"></i> Back
-        </button>
-      </div>
-    </div>
-    
-    <form (ngSubmit)="updateRoom()" #roomForm="ngForm" autocomplete="off">
-      <div class="row g-3">
-        <div class="col-md-4">
-          <label class="form-label">ID Ruangan</label>
-          <input type="text" class="form-control form-control-sm" [(ngModel)]="selectedRoom.id" name="id" disabled>
-        </div>
-  
-        <div class="col-md-8">
-          <label class="form-label">Nama Ruangan <span class="text-danger">*</span></label>
-          <input type="text" class="form-control form-control-sm" [(ngModel)]="selectedRoom.name" name="name" required maxlength="50">
-        </div>
-  
-        <div class="col-md-12">
-          <label class="form-label">Keterangan</label>
-          <textarea class="form-control form-control-sm" rows="2" [(ngModel)]="selectedRoom.description" name="description" maxlength="200"></textarea>
-        </div>
-  
-        <div class="col-md-6">
-          <label class="form-label">Status <span class="text-danger">*</span></label>
-          <select class="form-select form-select-sm" [(ngModel)]="selectedRoom.status" name="status" required>
-            <option value="READY">Ready</option>
-            <option value="BOOKED">Booked</option>
-            <option value="NOT_READY">Not Ready</option>
-          </select>
-        </div>
-  
-      </div>
-    </form>
-  </div>
-   -->
 
    <div class="card shadow-sm p-4">
     <!-- Header dan Tombol -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h5 class="card-title mb-0">Form Detail Ruangan</h5>
       <div class="btn-group btn-group-sm" role="group">
-        <button type="button" class="btn btn-primary rounded-pill px-3" (click)="newRoom()">
+        <button type="button" class="btn btn-outline-primary rounded-pill px-3 hover-text-white" (click)="newRoom()">
           <i class="bi bi-plus-circle"></i> Add New
         </button>
-        <button type="submit" class="btn btn-success rounded-pill px-3" (click)="updateRoom()">
+        <button type="submit" class="btn btn-outline-danger rounded-pill px-3 hover-text-white" (click)="updateRoom()">
           <i class="bi bi-save"></i> Update
         </button>
-        <button type="button" class="btn btn-secondary rounded-pill px-3" (click)="backToList()">
+        <button type="button" class="btn btn-outline-warning rounded-pill px-3 hover-text-white" (click)="backToList()">
           <i class="bi bi-arrow-left-circle"></i> Back
         </button>
       </div>
@@ -76,6 +29,11 @@
           <label class="form-label">Nama Ruangan <span class="text-danger">*</span></label>
           <input type="text" class="form-control form-control-sm" [(ngModel)]="selectedRoom.name" name="name" required maxlength="50">
         </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Kapasitas</label>
+          <input type="number" class="form-control form-control-sm" [(ngModel)]="selectedRoom.capacity" name="capacity" >
+        </div>    
   
         <div class="col-md-6">
           <label class="form-label">Status <span class="text-danger">*</span></label>

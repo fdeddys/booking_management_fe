@@ -1,0 +1,100 @@
+<div class="card shadow-sm p-4">
+    <!-- Header dan Tombol -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="card-title mb-0 text-secondary" >Form Detail Peminjaman Ruang</h5>
+      <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-outline-primary rounded-pill px-3 text-primary hover-text-white" (click)="newSewa()">
+          <i class="bi bi-plus-circle"></i> Add New
+        </button>
+        <button type="submit" class="btn btn-outline-danger rounded-pill px-3 text-danger hover-text-white" (click)="updateSewa()">
+          <i class="bi bi-save"></i> Save
+        </button>
+        <button type="button" class="btn btn-outline-warning rounded-pill px-3 text-warning hover-text-white" (click)="backToList()">
+          <i class="bi bi-arrow-left-circle"></i> Back
+        </button>
+      </div>
+    </div>
+  
+    <hr>
+    <!-- Form -->
+    <form #roomForm="ngForm" autocomplete="off">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">ID</label>
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="selectedSewa.id" name="id" readonly>
+        </div>
+  
+        <div class="col-md-6">
+          <label class="form-label">Note </label>
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="selectedSewa.notes" name="notes" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Customer<span class="text-danger">*</span></label>
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="selectedSewa.customerName" name="customer" required />
+        </div>    
+  
+        <div class="col-md-6">
+          <label class="form-label">Phone No. <span class="text-danger">*</span></label>
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="selectedSewa.phoneNumber" name="phoneNumber" required />
+        </div>
+  
+        <div class="col-md-6">
+          <label class="form-label">Participants</label>
+          <input type="number" class="form-control form-control-sm" rows="2" [(ngModel)]="selectedSewa.numberOfParticipants" name="numberOfParticipants" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">eventName<span class="text-danger">*</span></label>
+            <input type="text" class="form-control form-control-sm" rows="2" [(ngModel)]="selectedSewa.eventName" name="eventName" />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Date <span class="text-danger">*</span></label>
+          <div class="input-group w-auto">
+            <input
+              class="form-control form-control-sm"
+              placeholder="Tanggal Awal"
+              name="startDate"
+              ngbDatepicker
+              [(ngModel)]="tglAwal"
+              #dpAwal="ngbDatepicker"
+              readonly
+            />
+            <button class="btn btn-outline-secondary btn-sm" (click)="dpAwal.toggle()" type="button">📅</button>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Time <span class="text-danger">*</span></label>
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+              
+              <div class="input-group w-auto" >
+                <select class="form-select form-select-sm" [(ngModel)]="jamAwal" name="jamAwal"  style="width: 10em;">
+                  <option *ngFor="let jam of jamOperational " [ngValue]="jam">{{jam}}</option>
+                </select>
+              </div>
+
+              <div class="input-group w-auto">
+                <select class="form-select form-select-sm" [(ngModel)]="jamAkhir" name="jamAkhir" style="width: 10em;">
+                  <option *ngFor="let jam of jamOperationalAkhir " [ngValue]="jam">{{jam}}</option>
+                </select>
+              </div>
+              
+            </div>
+      </div>
+      
+
+        <div class="col-md-12">
+          <label class="form-label">Room <span class="text-danger">*</span></label>
+          <select class="form-select form-select-sm" [(ngModel)]="selectedRoom.id" name="room" required>
+            <option *ngFor="let room of allRooms" [ngValue]="room.id">{{ room.name }} - {{ room.description }}</option>
+          </select>
+        </div>
+
+        <!-- <div class="col-md-12">
+            <label class="form-label">notes</label>
+            <input type="text" class="form-control form-control-sm" rows="1" [(ngModel)]="selectedSewa.notes" name="notes" />
+          </div> -->
+      </div>
+    </form>
+  </div>

@@ -14,6 +14,8 @@ import { first } from 'rxjs/operators';
 import { IconService } from '@ant-design/icons-angular';
 import { EyeInvisibleOutline, EyeOutline } from '@ant-design/icons-angular/icons';
 
+// import { createHash } from 'crypto';
+
 interface Roles {
   name: string;
   email: string;
@@ -102,6 +104,12 @@ export class AuthLoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
+  // hashSHA256(data: string): string {
+  //   return createHash('sha256')
+  //       .update(data)
+  //       .digest('hex'); // Converts the hash to a hexadecimal string
+  // }
+
   onSubmit() {
     this.submitted = true;
 
@@ -112,9 +120,13 @@ export class AuthLoginComponent implements OnInit {
 
     this.error = '';
     this.loading = true;
+
+    var textEncrypt = this.formValues?.['email'].value + ":" + this.formValues?.['password']?.value;
+    // var hashPass = this.hashSHA256(textEncrypt)
+    // console.log('hash : ' + hashPass)
     this.authenticationService
-      .login(this.formValues?.['email']?.value, this.formValues?.['password']?.value)
-      .pipe(first())
+      .login2(this.formValues?.['email']?.value, this.formValues?.['password']?.value)
+      // .pipe(first())
       .subscribe({
         next: () => {
           this.router.navigate(['/dashboard']);

@@ -2,6 +2,7 @@
 export interface Room {
     id: number;
     name: string;
+    capacity: number;
     description: string;
     status: 'READY' | 'BOOKED' | 'NOT_READY';
   }

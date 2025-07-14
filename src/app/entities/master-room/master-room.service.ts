@@ -26,7 +26,7 @@ export class MasterRoomService {
 
   getRoomById(roomId : number): Observable<Room> {
 
-    let newresourceUrl = this.serverUrl + `/${roomId}`;
+    let newresourceUrl = this.serverUrl + `/id/${roomId}`;
     return this.http.get<Room>(newresourceUrl) 
   }
 
@@ -63,6 +63,12 @@ export class MasterRoomService {
       req['filter'], 
       { observe: 'response'}
       );
+  }
+
+  getAllRoom(): Observable<Room[]> {
+
+    let newresourceUrl = this.serverUrl + `/all`;
+    return this.http.get<Room[]>(newresourceUrl) 
   }
 
 }

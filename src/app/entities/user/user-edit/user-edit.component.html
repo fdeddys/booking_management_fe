@@ -1,0 +1,45 @@
+
+<div class="card shadow-sm p-4">
+    <!-- Header dan Tombol -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="card-title mb-0">Form Detail</h5>
+      <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-outline-primary rounded-pill px-3 hover-text-white" (click)="newUser()">
+          <i class="bi bi-plus-circle"></i> Add New
+        </button>
+        <button type="submit" class="btn btn-outline-danger rounded-pill px-3 hover-text-white" (click)="updateUser()">
+          <i class="bi bi-save"></i> Update
+        </button>
+        <button type="button" class="btn btn-outline-warning rounded-pill px-3 hover-text-white" (click)="backToList()">
+          <i class="bi bi-arrow-left-circle"></i> Back
+        </button>
+      </div>
+    </div>
+  
+    <hr>
+    <!-- Form -->
+    <form #roomForm="ngForm" autocomplete="off">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label class="form-label">ID </label>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="selectedUser.id" name="id" disabled>
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Username <span class="text-danger">*</span></label>
+                <input type="text" [disabled] = "selectedUser.id!=0" class="form-control form-control-sm" [(ngModel)]="selectedUser.username" name="username" required maxlength="50">
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Password <span class="text-danger">*</span></label>
+              <input type="password" class="form-control form-control-sm" [(ngModel)]="selectedUser.password" name="password" required maxlength="50">
+            </div>
+        </div>
+    
+    </form>
+  </div>
+  

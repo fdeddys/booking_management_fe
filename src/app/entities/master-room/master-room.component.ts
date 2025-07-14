@@ -11,14 +11,14 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-master-room',
   templateUrl: './master-room.component.html',
-  imports: [FormsModule, CommonModule, IconComponent],
+  imports: [FormsModule, CommonModule],
   styleUrls: ['./master-room.component.scss']
 })
 export class MasterRoomComponent implements OnInit {
   
 
   page = 1;
-  pageSize = 5;
+  pageSize = 8;
   totalPages = 1;
   totalData = 0;
   searchTerm = {

@@ -54,3 +54,7 @@ body.mantis-rtl {
 @import 'scss/theme/layouts/dark-mode/dark.scss';
 
 @import 'scss/theme/style-preset.scss';
+
+.hover-text-white:hover {
+  color: white !important;
+}

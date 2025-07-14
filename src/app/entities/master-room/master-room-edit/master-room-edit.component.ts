@@ -6,11 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MasterRoomService } from '../master-room.service';
 import { Router } from '@angular/router';
-import { error } from 'console';
 
 @Component({
   selector: 'app-master-room-edit',
-  imports: [FormsModule, CommonModule, IconComponent],
+  imports: [FormsModule, CommonModule],
   templateUrl: './master-room-edit.component.html',
   styleUrl: './master-room-edit.component.scss'
 })
@@ -42,9 +41,6 @@ export class MasterRoomEditComponent implements OnInit {
   }
   
   ngOnInit() {
-    
-  
-   
   }
 
   newRoom() {
@@ -56,7 +52,8 @@ export class MasterRoomEditComponent implements OnInit {
       id: 0,
       name: '',
       description: '',
-      status: 'READY'
+      status: 'READY',
+      capacity:0
     };
   }
 

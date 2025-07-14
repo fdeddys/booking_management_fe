@@ -22,15 +22,15 @@ const routes: Routes = [
         path: 'login',
         loadComponent: () => import('./demo/authentication/auth-login/auth-login.component').then((c) => c.AuthLoginComponent)
       },
-      {
-        path: 'register',
-        loadComponent: () => import('./demo/authentication/auth-register/auth-register.component').then((c) => c.AuthRegisterComponent)
-      },
-      {
-        path: 'forgot-password',
-        loadComponent: () =>
-          import('./demo/authentication/forgot-password/forgot-password.component').then((c) => c.ForgotPasswordComponent)
-      }
+      // {
+      //   path: 'register',
+      //   loadComponent: () => import('./demo/authentication/auth-register/auth-register.component').then((c) => c.AuthRegisterComponent)
+      // },
+      // {
+      //   path: 'forgot-password',
+      //   loadComponent: () =>
+      //     import('./demo/authentication/forgot-password/forgot-password.component').then((c) => c.ForgotPasswordComponent)
+      // }
     ]
   },
   {
@@ -62,7 +62,32 @@ const routes: Routes = [
         path: 'sewa',
         loadComponent: () => import('./entities/sewa/sewa.component').then((c)=>c.SewaComponent),
         data: { roles: [Role.Admin, Role.User] }
-      }
+      },
+      {
+        path: 'sewa-detail',
+        loadComponent: () => import('./entities/sewa/sewa-edit/sewa-edit.component').then((c)=>c.SewaEditComponent),
+        data: { roles: [Role.Admin, Role.User] }
+      },
+      {
+        path: 'report-daily',
+        loadComponent: () => import('./entities/share/report/report-daily/report-daily.component').then((c)=>c.ReportDailyComponent),
+        data: { roles: [Role.Admin, Role.User] }
+      },
+      {
+        path: 'report-monthly',
+        loadComponent: () => import('./entities/share/report/report-monthly/report-monthly.component').then((c)=>c.ReportMonthlyComponent),
+        data: { roles: [Role.Admin, Role.User] }
+      },
+      {
+        path: 'users',
+        loadComponent: () => import('./entities/user/user.component').then((c)=>c.UserComponent),
+        data: { roles: [Role.Admin, Role.User] }
+      },
+      {
+        path: 'users-detail',
+        loadComponent: () => import('./entities/user/user-edit/user-edit.component').then((c)=>c.UserEditComponent),
+        data: { roles: [Role.Admin, Role.User] }
+      },
     ]
   }
 ];

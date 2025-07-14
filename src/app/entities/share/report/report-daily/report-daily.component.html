@@ -1,0 +1,53 @@
+
+<div class="card shadow-sm p-4 mt-4" >
+    <!-- Header dan Tombol -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="card-title mb-0">Daily Report</h5>
+    </div>
+  
+    <!-- Search -->
+
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+
+        <!-- Tanggal Awal -->
+        <div class="input-group w-auto">
+          <input
+            class="form-control form-control-sm"
+            placeholder="Tanggal Awal"
+            name="startDate"
+            ngbDatepicker
+            [(ngModel)]="tglAwal"
+            #dpAwal="ngbDatepicker"
+          />
+          <button class="btn btn-outline-secondary btn-sm" (click)="dpAwal.toggle()" type="button">📅</button>
+        </div>
+      
+        <!-- Tanggal Akhir -->
+        <div class="input-group w-auto">
+          <input
+            class="form-control form-control-sm"
+            placeholder="Tanggal Akhir"
+            name="endDate"
+            ngbDatepicker
+            [(ngModel)]="tglAkhir"
+            #dpAkhir="ngbDatepicker"
+          />
+          <button class="btn btn-outline-secondary btn-sm" (click)="dpAkhir.toggle()" type="button">📅</button>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">Room <span class="text-danger">*</span></label>
+            <select class="form-select form-select-sm" [(ngModel)]="selectedRoom.id" name="room" required>
+              <option *ngFor="let room of allRooms" [ngValue]="room.id">{{ room.name }} - {{ room.description }}</option>
+            </select>
+        </div>
+      
+        <!-- Tombol Cari -->
+        <button class="btn btn-outline-danger btn-sm rounded-pill px-3" (click)="download()">
+          <i class="bi bi-search"></i> Download
+        </button>
+      
+      </div>
+
+  </div>
+  
